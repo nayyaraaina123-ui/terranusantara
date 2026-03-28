@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terra Nusantara</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+</head>
+
+<body>
+
+<a href="test.html" class="floating-btn">
+    <img src="GAMBAR/AYO TANAM!.png">
+</a>
+
+<div class="leaves">
+<div class="leaf"></div>
+<div class="leaf"></div>
+<div class="leaf"></div>
+<div class="leaf"></div>
+<div class="leaf"></div>
+</div>
+
+<header class="navbar">
+  <div class="logo-container">
+    <a href="#hero">
+      <img src="GAMBAR/logo.png" alt="Logo Terra Nusantara" class="logo">
+    </a>
+
+    <div class="brand-text">
+    <h1>Terra Nusantara</h1>
+    <span class="sub-tittle">SMKN 4 BANDUNG</span>
+    </div>
+  </div>
+
+<nav>
+<a href="#hero">Home</a>
+<a href="#About">About</a>
+<a href="#jenis tanah">Jenis Tanah</a>  
+<a href="#tanaman">Tanaman</a>
+<a href="#peta">Peta</a>
+<a href="#edukasi">Edukasi</a>
+<a href="#galeri">Gallery</a>
+<a href="#kontak">Kontak</a>
+</nav>
+</header>
+
+<section class="hero" id="hero">
+<h2><span id="typing"></span></h2>
+<p>Mengenal jenis tanah dan tanaman terbaik di Nusantara</p>
+<a href="#peta" class="btn">Jelajahi Peta</a>
+</section>
+
+<section class="About" id="About">
+<h2>About Website</h2>
+
+<p>
+Website ini dibuat sebagai media edukasi yang bertujuan untuk memberikan 
+informasi mengenai kondisi tanah di Indonesia serta tanaman yang cocok
+untuk ditanam pada berbagai jenis tanah.
+</p>
+
+<p>
+Dengan adanya website ini, diharapkan masyarakat dapat lebih memahami
+potensi sumber daya alam yang dimiliki Indonesia serta pentingnya
+menjaga kelestarian lingkungan.
+</p>
+
+<div class="about-image">
+<img src="GAMBAR/about.jpg">
+</div>
+
+</section>
+
+<div class="soil-curve">
+<svg viewBox="0 0 1440 200" preserveAspectRatio="none">
+<path class="curve-shadow" d="M0,120 C200,60 400,160 600,120 C800,80 1000,160 1200,120 C1320,100 1380,110 1440,120 L1440,200 L0,200 Z"></path>
+</svg>
+</div>
+
+<audio id="flipSound" src="flip.mp3"></audio>
+
+<section class="jenis-tanah" id="jenis tanah">
+
+<h2>Jenis Tanah di Indonesia</h2>
+<p>Indonesia memiliki beragam jenis tanah akibat aktivitas 
+   vulkanik dan iklim tropis, dengan jenis utama meliputi 
+   Tanah Vulkanik (Andosol) yang sangat subur, Aluvial (endapan sungai), 
+   Gambut/Organosol (rawa), Podsolik Merah Kuning, Latosol, Kapur (Mediteran),
+   Regosol, Litosol, Humus, dan Grumusol. Jenis-jenis tanah ini tersebar 
+   sesuai karakteristik geografisnya. </p>
+
+<div class="card-container">
+
+<div class="flip-card" onmouseenter="playFlip()">
+<div class="flip-inner">
+<div class="flip-front">
+<img src="TANAH/vulkanik.jpg">
+</div>
+<div class="flip-back">
+<h3>Tanah Vulkanik</h3>
+<p>Tanah dari abu gunung berapi yang sangat subur dan cocok untuk sayuran, kopi, dan teh.</p>
+</div>
+</div>
+</div>
+
+<div class="flip-card" onmouseenter="playFlip()">
+<div class="flip-inner">
+<div class="flip-front">
+<img src="TANAH/aluvial.jpg">
+</div>
+<div class="flip-back">
+<h3>Tanah Aluvial</h3>
+<p>Terbentuk dari endapan sungai dan banyak digunakan untuk pertanian padi.</p>
+</div>
+</div>
+</div>
+
+<div class="flip-card" onmouseenter="playFlip()">
+<div class="flip-inner">
+<div class="flip-front">
+<img src="TANAH/gambut.jpg">
+</div>
+<div class="flip-back">
+<h3>Tanah Gambut</h3>
+<p>Tanah dari sisa tumbuhan yang membusuk dan banyak ditemukan di daerah rawa.</p>
+</div>
+</div>
+</div>
+
+<div class="flip-card" onmouseenter="playFlip()">
+<div class="flip-inner">
+<div class="flip-front">
+<img src="TANAH/laterit.jpg">
+</div>
+<div class="flip-back">
+<h3>Tanah Laterit</h3>
+<p>Tanah berwarna merah karena kandungan zat besi dan banyak ditemukan di daerah tropis.</p>
+</div>
+</div>
+</div>
+
+</section>
+
+<div class="blend-divider"></div>
+
+<section class="tanaman-carousel" id="tanaman">
+        <div class="bingkai-karakter">
+            <img src="GAMBAR/karakter1.png" alt="Dua karakter piksel sedang berkebun" class="foto-karakter">
+        </div>
+    <h2>Tanaman Unggulan di Indonesia</h2>
+    <div class="carousel-wrapper">
+        <div class="wheel" id="plantWheel">
+            <div class="plant-card" style="--i:0;">
+                <img src="TANAMAN/padi.jpg">
+                <div class="plant-info"><h3>Padi</h3><p>Tanah Aluvial</p></div>
+            </div>
+            <div class="plant-card" style="--i:1;">
+                <img src="TANAMAN/kopi.jpg">
+                <div class="plant-info"><h3>Kopi</h3><p>Tanah Vulkanik</p></div>
+            </div>
+            <div class="plant-card" style="--i:2;">
+                <img src="TANAMAN/sawit.jpg">
+                <div class="plant-info"><h3>Sawit</h3><p>Tanah Gambut</p></div>
+            </div>
+            <div class="plant-card" style="--i:3;">
+                <img src="TANAMAN/karet.jpg">
+                <div class="plant-info"><h3>Karet</h3><p>Tanah Laterit</p></div>
+            </div>
+            <div class="plant-card" style="--i:4;">
+                <img src="TANAMAN/cengkeh.jpg">
+                <div class="plant-info"><h3>Cengkeh</h3><p>Tanah Latosol</p></div>
+            </div>
+            <div class="plant-card" style="--i:5;">
+                <img src="TANAMAN/tebu.jpg">
+                <div class="plant-info"><h3>Tebu</h3><p>Tanah Grumusol</p></div>
+            </div>
+        </div>
+    </div>
+    <div class="nav-buttons">
+        <button class="btn-nav" onclick="rotateWheel('prev')">❮</button>
+        <button class="btn-nav" onclick="rotateWheel('next')">❯</button>
+    </div>
+
+    <div id="plantModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <div class="modal-body">
+            <img id="modalImg" src="" alt="">
+            <div class="modal-text">
+                <h2 id="modalTitle">Nama Tanaman</h2>
+                <hr>
+                <p id="modalDesc">Deskripsi lengkap tanaman akan muncul di sini.</p>
+                <div class="plant-stats">
+                    <span id="modalSoil">Tanah: -</span>
+                    <span id="modalWater">Penyiraman: -</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</section>
+
+<section class="peta-section" id="peta">
+  <div class="container-peta">
+    <h2>Peta Persebaran Tanah</h2>
+    <p>Gunakan peta interaktif di bawah ini untuk melihat persebaran jenis tanah di seluruh wilayah Indonesia.</p>
+    
+    <div class="map-wrapper">
+        <div class="map">
+
+<img src="PULAU/sumatera.png" class="pulau sumatera" onclick="showInfo(event,'sumatera')">
+<img src="PULAU/jawa.png" class="pulau jawa" onclick="showInfo(event,'jawa')">
+<img src="PULAU/bali.png" class="pulau bali" onclick="showInfo(event,'bali')">
+<img src="PULAU/ntb.png" class="pulau ntb" onclick="showInfo(event,'ntb')">
+<img src="PULAU/ntt.png" class="pulau ntt" onclick="showInfo(event,'ntt')">
+<img src="PULAU/kalimantan.png" class="pulau kalimantan" onclick="showInfo(event,'kalimantan')">
+<img src="PULAU/sulawesi.png" class="pulau sulawesi" onclick="showInfo(event,'sulawesi')">
+<img src="PULAU/maluku.png" class="pulau maluku" onclick="showInfo(event,'maluku')">
+<img src="PULAU/papua.png" class="pulau papua" onclick="showInfo(event,'papua')">
+
+<div id="popup"></div>
+
+        </div>
+      </div>
+</section>
+
+<section class="edukasi-section reveal" id="edukasi">
+  <div class="container-edukasi">
+    <div class="header-edukasi">
+      <h2>Pusat Edukasi Terra Nusantara</h2>
+      <p>Wawasan mendalam mengenai tanah dan ekosistem nusantara melalui literasi digital.</p>
+    </div>
+<div class="grid-edukasi">
+  <div class="edukasi-card">
+    <div class="edukasi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#656D3F" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+    <h3>Mengenal Jenis Tanah</h3>
+    <p>Klasifikasi tanah di Indonesia mulai dari Andosol hingga Aluvial.</p>
+    <a href="https://www.detik.com/kalimantan/kalimantan-lestari/d-8109869/macam-macam-tanah-di-indonesia-ciri-dan-persebarannya" target="_blank" class="btn-edukasi">Baca Artikel</a>
+  </div>
+
+  <div class="edukasi-card">
+    <div class="edukasi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#656D3F" stroke-width="2"><path d="M12 19V6M5 11l7-7 7 7"/></svg></div>
+    <h3>Panduan Menanam</h3>
+    <p>Tips memilih bibit unggul yang sesuai dengan tekstur tanah lokal.</p>
+    <a href="https://mediaindonesia.com/humaniora/776347/panduan-praktis-cara-menanam-tanaman-mudah-di-rumah" target="_blank" class="btn-edukasi">Baca Artikel</a>
+  </div>
+
+  <div class="edukasi-card">
+    <div class="edukasi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#656D3F" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/></svg></div>
+    <h3>Praktik Berkelanjutan</h3>
+    <p>Cara meminimalisir penggunaan pupuk kimia dengan sistem kompos.</p>
+    <a href="https://id.wikipedia.org/wiki/Pertanian_berkelanjutan" target="_blank" class="btn-edukasi">Baca Artikel</a>
+  </div>
+
+  <div class="edukasi-card">
+    <div class="edukasi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#656D3F" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+    <h3>Konservasi Air</h3>
+    <p>Metode irigasi tetes untuk menjaga kelembapan tanah.</p>
+    <a href="https://id.wikipedia.org/wiki/Konservasi_air" target="_blank" class="btn-edukasi">Baca Artikel</a>
+  </div>
+
+  <div class="edukasi-card">
+    <div class="edukasi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#656D3F" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><circle cx="12" cy="12" r="3"></circle></svg></div>
+    <h3>Teknologi Precision</h3>
+    <p>Optimasi hasil panen melalui analisis data dan sensor tanah.</p>
+    <a href="https://id.wikipedia.org/wiki/Pertanian_presisi" target="_blank" class="btn-edukasi">Baca Artikel</a>
+  </div>
+
+  <div class="edukasi-card">
+    <div class="edukasi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#656D3F" stroke-width="2"><path d="M11 20A7 7 0 0 1 11 6a7 7 0 0 1 11 6 7 7 0 0 1-7 7 7 7 0 0 1-4-1.3"></path></svg></div>
+    <h3>Rehabilitasi Lahan</h3>
+    <p>Upaya menghijaukan kembali lahan kritis melalui reboisasi.</p>
+    <a href="https://www.gramedia.com/literasi/pengertian-reboisasi/" target="_blank" class="btn-edukasi">Baca Artikel</a>
+  </div>
+</div>
+   
+    </div>
+  </div>
+</section>
+
+<section class="gallery-section" id="galeri">
+    <div class="container-gallery">
+        <div class="header-gallery">
+            <span class="sub-title">Visualisasi Alam</span>
+            <h2>Galeri Terra Nusantara</h2>
+            <div class="divider-gallery"></div>
+        </div>
+
+        <div class="bento-grid">
+            <div class="gallery-item large" 
+                 style="background-image: url('GAMBAR/hutan.jpg');" 
+                 onclick="openLightbox('GAMBAR/hutan.jpg', 'Hutan Hujan Tropis')">
+                <div class="overlay">
+                    <span>Ekosistem</span>
+                    <h3>Hutan Hujan Tropis</h3>
+                </div>
+            </div>
+
+            <div class="gallery-item" 
+                 style="background-image: url('GAMBAR/sawah.jpg');" 
+                 onclick="openLightbox('GAMBAR/sawah.jpg', 'Terasering Padi')">
+                <div class="overlay">
+                    <span>Pertanian</span>
+                    <h3>Terasering Padi</h3>
+                </div>
+            </div>
+
+            <div class="gallery-item" 
+                 style="background-image: url('GAMBAR/tanah.jpg');" 
+                 onclick="openLightbox('GAMBAR/tanah.jpg', 'Tekstur Tanah')">
+                <div class="overlay">
+                    <span>Geologi</span>
+                    <h3>Tekstur Tanah Vulkanik</h3>
+                </div>
+            </div>
+
+            <div class="gallery-item wide" 
+                 style="background-image: url('GAMBAR/sungai.jpg');" 
+                 onclick="openLightbox('GAMBAR/sungai.jpg', 'Aliran Sungai Pegunungan')">
+                <div class="overlay">
+                    <span>Hidrologi</span>
+                    <h3>Aliran Sungai Pegunungan</h3>
+                </div>
+            </div>
+
+            <div class="gallery-item" 
+                 style="background-image: url('GAMBAR/bibit.jpg');" 
+                 onclick="openLightbox('GAMBAR/bibit.jpg', 'Pembibitan Organik')">
+                <div class="overlay">
+                    <span>Botani</span>
+                    <h3>Pembibitan Organik</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="contact-section" id="kontak">
+    <div class="contact-card">
+        <div class="contact-info">
+            <h2>Hubungi Kami</h2>
+            <p>Punya pertanyaan tentang ekosistem Nusantara? Mari berdiskusi!</p>
+            
+            <div class="info-details">
+                <div class="info-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>info@smkn4bdg.sch.id</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>SMKN 4 Bandung, Jawa Barat</span>
+                </div>
+            </div>
+
+            <div class="social-icons">
+                <a href="https://www.instagram.com/smknegeri4bandung/"><i class="fab fa-instagram"></i></a>
+                <a href="https://share.google/p303nEQ6b5CE63bPl"><i class="fab fa-youtube"></i></a>
+                <a href="https://share.google/HRNIDfQb0aABMng0o"><i class="fab fa-facebook"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-visual">
+            <img src="GAMBAR/logo.png" alt="Terra Nusantara" class="footer-logo-large">
+        </div>
+    </div>
+</section>
+
+<footer>
+  <div class="footer-container">
+    <h2>Terra Nusantara</h2>
+    <p>Website edukasi lingkungan & tanah</p>
+
+    <p class="copyright">
+      © 2026 Terra Nusantara. All rights reserved.
+    </p>
+  </div>
+</footer>
+
+<div id="galleryLightbox" class="lightbox" onclick="closeLightbox()">
+    <span class="close-lightbox">&times;</span>
+    <img id="lightboxImg" src="" alt="Preview">
+    <div id="lightboxCaption"></div>
+</div>
+
+<script>
+
+    var typed = new Typed('#typing', {
+    strings: [
+        'Eksplorasi Kesuburan Tanah Indonesia'
+    ],
+    typeSpeed: 100,      // Kecepatan ngetik
+    backSpeed: 50,       // Kecepatan hapus
+    backDelay: 2000,     // Waktu tunggu sebelum hapus (2 detik)
+    loop: true,          // Mengulang terus menerus
+    showCursor: true,    // Menampilkan kursor
+    cursorChar: '|'      // Karakter kursor
+});
+
+function playFlip(){
+let sound = document.getElementById("flipSound");
+sound.currentTime = 0;
+sound.play();
+}
+
+/* ANIMASI CARD SAAT SCROLL */
+
+const cards = document.querySelectorAll(".flip-card");
+
+function revealCards(){
+const trigger = window.innerHeight * 0.85;
+
+cards.forEach(card=>{
+const top = card.getBoundingClientRect().top;
+
+if(top < trigger){
+card.classList.add("show");
+}
+});
+}
+
+window.addEventListener("scroll", revealCards);
+revealCards();
+
+let currentAngle = 0;
+
+function rotateWheel(direction) {
+    const wheel = document.getElementById('plantWheel');
+    
+    if(direction === 'next') {
+        currentAngle -= 60; 
+    } else {
+        currentAngle += 60;
+    }
+    
+    wheel.style.transform = `rotateY(${currentAngle}deg)`;
+}
+
+// Data Detail Tanaman
+const plantData = {
+    "Padi": {
+        desc: "Padi adalah komoditas utama Indonesia. Membutuhkan penggenangan air secara berkala dan sangat cocok tumbuh di tanah aluvial yang kaya hara.",
+        soil: "Aluvial", water: "Tinggi", img: "TANAMAN/padi.jpg"
+    },
+    "Kopi": {
+        desc: "Tanaman ini tumbuh subur di tanah vulkanik dengan ketinggian di atas 800 MDPL. Menghasilkan aroma khas tergantung mineral tanahnya.",
+        soil: "Vulkanik", water: "Sedang", img: "TANAMAN/kopi.jpg"
+    },
+    "Sawit": {
+        desc: "Kelapa sawit memiliki adaptasi kuat di tanah gambut yang telah dikelola, membutuhkan penyinaran matahari penuh.",
+        soil: "Gambut / Podsolik", water: "Sedang", img: "TANAMAN/sawit.jpg"
+    },
+    "Karet": {
+        desc: "Pohon karet dapat tumbuh di tanah yang kurang subur seperti laterit, namun membutuhkan kelembapan yang konsisten.",
+        soil: "Laterit / Litosol", water: "Sedang", img: "TANAMAN/karet.jpg"
+    },
+    "Cengkeh": {
+        desc: "Tanaman rempah asli Indonesia ini menyukai tanah Latosol yang dalam dan berdrainase baik di daerah dekat pantai atau pegunungan.",
+        soil: "Latosol / Regosol", water: "Sedang", img: "TANAMAN/cengkeh.jpg"
+    },
+    "Tebu": {
+        desc: "Tebu tumbuh maksimal di tanah Grumusol dengan iklim kering saat masa panen untuk meningkatkan kadar rendemen gula.",
+        soil: "Grumusol / Aluvial", water: "Rendah", img: "TANAMAN/tebu.jpg"
+    }
+};
+
+// Fungsi Membuka Modal (Versi Perbaikan Total)
+const allCards = document.querySelectorAll('.plant-card');
+
+allCards.forEach(card => {
+    card.addEventListener('click', function(e) {
+        const titleElement = this.querySelector('h3');
+        if (!titleElement) return;
+
+        const name = titleElement.innerText.trim();
+        const info = plantData[name];
+
+        console.log("Mencoba membuka data untuk:", name); 
+
+        if (info) {
+            document.getElementById('modalTitle').innerText = name;
+            document.getElementById('modalDesc').innerText = info.desc;
+            document.getElementById('modalSoil').innerText = "Tanah: " + info.soil;
+            document.getElementById('modalWater').innerText = "Penyiraman: " + info.water;
+            document.getElementById('modalImg').src = info.img;
+
+            document.getElementById('plantModal').style.display = 'flex';
+        } else {
+            console.error("Data tidak ditemukan untuk: " + name);
+        }
+    });
+});
+
+// Fungsi Menutup Modal
+function closeModal() {
+    document.getElementById('plantModal').style.display = 'none';
+}
+
+window.onclick = function(event) {
+    const modal = document.getElementById('plantModal');
+    if (event.target == modal) {
+        closeModal();
+    }
+}
+
+function showInfo(event,pulau){
+
+let data={
+
+sumatera:{
+nama:"Sumatera",
+tanah:"Vulkanik & Gambut",
+tanaman:"Kelapa sawit, karet, kopi"
+},
+
+jawa:{
+nama:"Jawa",
+tanah:"Vulkanik",
+tanaman:"Padi, sayuran, teh"
+},
+
+bali:{
+nama:"Bali",
+tanah:"Vulkanik",
+tanaman:"Padi, kopi, buah tropis"
+},
+
+ntb:{
+nama:"Nusa Tenggara Barat",
+tanah:"Mediteran & Vulkanik",
+tanaman:"Jagung, tembakau, padi"
+},
+
+ntt:{
+nama:"Nusa Tenggara Timur",
+tanah:"Latosol & Mediteran",
+tanaman:"Jagung, sorgum, kacang"
+},
+
+kalimantan:{
+nama:"Kalimantan",
+tanah:"Gambut",
+tanaman:"Kelapa, sagu"
+},
+
+sulawesi:{
+nama:"Sulawesi",
+tanah:"Laterit",
+tanaman:"Kakao, kopi"
+},
+
+maluku:{
+nama:"Maluku",
+tanah:"Vulkanik & Latosol",
+tanaman:"Pala, cengkeh, kelapa"
+},
+
+papua:{
+nama:"Papua",
+tanah:"Aluvial",
+tanaman:"Sagu, ubi"
+}
+
+};
+
+let info=data[pulau];
+let popup=document.getElementById("popup");
+
+popup.innerHTML=
+"<b>"+info.nama+"</b><br>"+
+"Tanah: "+info.tanah+"<br>"+
+"Tanaman: "+info.tanaman;
+
+let pulauPos = event.target;
+
+popup.style.left = (pulauPos.offsetLeft + pulauPos.offsetWidth/2) + "px";
+popup.style.top = (pulauPos.offsetTop) + "px";
+
+popup.style.display="block";
+
+}
+
+document.addEventListener("click",function(e){
+if(!e.target.classList.contains("pulau")){
+document.getElementById("popup").style.display="none";
+}
+});
+
+function openLightbox(imgSrc, caption) {
+    const lightbox = document.getElementById('galleryLightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxCap = document.getElementById('lightboxCaption');
+
+    lightboxImg.src = imgSrc;
+    lightboxCap.innerText = caption;
+    lightbox.style.display = 'flex';
+    
+    // Delay sedikit untuk animasi scale
+    setTimeout(() => {
+        lightbox.classList.add('active');
+    }, 10);
+}
+
+function closeLightbox() {
+    const lightbox = document.getElementById('galleryLightbox');
+    lightbox.classList.remove('active');
+    setTimeout(() => {
+        lightbox.style.display = 'none';
+    }, 300);
+}
+
+</script>
+
+</body>
+</html>

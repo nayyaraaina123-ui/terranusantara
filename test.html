@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌱 PlantGrow Predictor Indonesia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #7b854b 0%, #F8F5F0 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+        }
+
+        /* Back Button */
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            font-size: 0.95rem;
+        }
+
+        .back-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateX(-5px);
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 60px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .form-container {
+            background: rgba(255,255,255,0.95);
+            padding: 50px;
+            border-radius: 25px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+            backdrop-filter: blur(15px);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .input-group {
+            margin-bottom: 30px;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.05rem;
+        }
+
+        .input-group select {
+            width: 100%;
+            padding: 18px 22px;
+            border: 3px solid #e1e5e9;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            font-family: inherit;
+            background: white;
+            transition: all 0.3s ease;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 18px center;
+            background-size: 20px;
+        }
+
+        .input-group select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .predict-btn {
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(135deg, #84934A 0%, #387832 100%);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            box-shadow: 0 10px 25px #387832;
+        }
+
+        .predict-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px #84934A;
+        }
+
+        /* Popup Result */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(10px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .popup-content {
+            background: rgba(255,255,255,0.98);
+            padding: 50px;
+            border-radius: 25px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+            backdrop-filter: blur(20px);
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            text-align: center;
+            transform: scale(0.7);
+            animation: popupScale 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes popupScale {
+            to { transform: scale(1); }
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #666;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .popup-close:hover {
+            background: rgba(0,0,0,0.1);
+            color: #333;
+            transform: rotate(90deg);
+        }
+
+        .popup-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 25px;
+        }
+
+        .progress-circle {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 30px;
+        }
+
+        .progress-svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .progress-bg {
+            fill: none;
+            stroke: #e1e5e9;
+            stroke-width: 6;
+        }
+
+        .progress-bar {
+            fill: none;
+            stroke: #10b981;
+            stroke-width: 5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transition: stroke-dashoffset 2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .percentage {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #10b981, #059669);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .success-desc {
+            font-size: 1.3rem;
+            color: #555;
+            margin: 25px 0;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin: 20px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .status-sangat-bagus { 
+            background: linear-gradient(135deg, #10b981, #059669); 
+            color: white; 
+            animation: pulse-green 2s infinite;
+        }
+
+        .status-bagus { 
+            background: linear-gradient(135deg, #f59e0b, #d97706); 
+            color: white; 
+        }
+
+        .status-sedang { 
+            background: linear-gradient(135deg, #f97316, #ea580c); 
+            color: white; 
+        }
+
+        .status-buruk { 
+            background: linear-gradient(135deg, #ef4444, #dc2626); 
+            color: white; 
+        }
+
+        @keyframes pulse-green {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            50% { box-shadow: 0 0 0 20px rgba(16, 185, 129, 0); }
+        }
+
+        .hidden { display: none; }
+
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2rem; }
+            .form-container { padding: 40px 25px; }
+            .popup-content { padding: 40px 25px; margin: 20px; }
+            .percentage { font-size: 3rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Back Button -->
+    <button class="back-btn" onclick="window.location.href='index.html'">
+        ← Kembali
+    </button>
+
+    <div class="container">
+        <header class="header">
+            <h1>🌱 PlantGrow Predictor</h1>
+            <p>Pilih tanaman, cuaca & tanah untuk prediksi akurat!</p>
+        </header>
+
+        <form id="plantForm" class="form-container">
+            <div class="input-group">
+                <label for="plant">Pilih Tanaman:</label>
+                <select id="plant" required>
+                    <option value="">-- 6 Tanaman Unggulan --</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="weather">Cuaca:</label>
+                <select id="weather" required>
+                    <option value="">-- Pilih Cuaca --</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="soil">Jenis Tanah:</label>
+                <select id="soil" required>
+                    <option value="">-- 4 Jenis Tanah --</option>
+                </select>
+            </div>
+
+            <button type="submit" class="predict-btn">🔍 Hitung Sekarang</button>
+        </form>
+    </div>
+
+    <!-- Popup Result -->
+    <div id="resultPopup" class="popup-overlay">
+        <div class="popup-content">
+            <button class="popup-close" onclick="closePopup()">&times;</button>
+            <h2 id="popupTitle" class="popup-title"></h2>
+            <div class="progress-circle">
+                <svg class="progress-svg" viewBox="0 0 36 36">
+                    <path class="progress-bg" d="M18 3.0846 a 14.9155 14.9155 0 0 1 0 29.831 a 14.9155 14.9155 0 0 1 0 -29.831"/>
+                    <path class="progress-bar" stroke-dasharray="100" stroke-dashoffset="100" 
+                          d="M18 3.0846 a 14.9155 14.9155 0 0 1 0 29.831 a 14.9155 14.9155 0 0 1 0 -29.831"/>
+                </svg>
+                <span id="popupPercentage" class="percentage">0%</span>
+            </div>
+            <p id="popupDesc" class="success-desc"></p>
+            <div id="popupStatus" class="status-badge"></div>
+        </div>
+    </div>
+
+    <script>
+        class PlantPredictor {
+            constructor() {
+                this.plantsData = {
+                    padi: { name: "🌾 Padi", successRates: {
+                        cerah_vulkanik: 92, cerah_aluvial: 95, cerah_gambut: 65, cerah_laterit: 70,
+                        hujan_vulkanik: 88, hujan_aluvial: 92, hujan_gambut: 75, hujan_laterit: 68,
+                        mendung_vulkanik: 85, mendung_aluvial: 90, mendung_gambut: 70, mendung_laterit: 65
+                    }},
+                    sawit: { name: "🌴 Sawit", successRates: {
+                        cerah_vulkanik: 85, cerah_aluvial: 90, cerah_gambut: 95, cerah_laterit: 75,
+                        hujan_vulkanik: 92, hujan_aluvial: 88, hujan_gambut: 98, hujan_laterit: 80,
+                        mendung_vulkanik: 82, mendung_aluvial: 85, mendung_gambut: 92, mendung_laterit: 72
+                    }},
+                    kopi: { name: "☕ Kopi", successRates: {
+                        cerah_vulkanik: 95, cerah_aluvial: 85, cerah_gambut: 60, cerah_laterit: 88,
+                        hujan_vulkanik: 90, hujan_aluvial: 80, hujan_gambut: 55, hujan_laterit: 82,
+                        mendung_vulkanik: 92, mendung_aluvial: 82, mendung_gambut: 58, mendung_laterit: 85
+                    }},
+                    karet: { name: "🌳 Karet", successRates: {
+                        cerah_vulkanik: 88, cerah_aluvial: 92, cerah_gambut:82, cerah_laterit: 78,
+                        hujan_vulkanik: 95, hujan_aluvial: 90, hujan_gambut: 88, hujan_laterit: 82,
+                        mendung_vulkanik: 85, mendung_aluvial: 88, mendung_gambut: 85, mendung_laterit: 75
+                    }},
+                    cengkeh: { name: "🌸 Cengkeh", successRates: {
+                        cerah_vulkanik: 98, cerah_aluvial: 85, cerah_gambut: 45, cerah_laterit: 90,
+                        hujan_vulkanik: 95, hujan_aluvial: 82, hujan_gambut: 40, hujan_laterit: 88,
+                        mendung_vulkanik: 96, mendung_aluvial: 83, mendung_gambut: 42, mendung_laterit: 87
+                    }},
+                    tebu: { name: "🍬 Tebu", successRates: {
+                        cerah_vulkanik: 85, cerah_aluvial: 95, cerah_gambut: 70, cerah_laterit: 75,
+                        hujan_vulkanik: 88, hujan_aluvial: 98, hujan_gambut: 78, hujan_laterit: 72,
+                        mendung_vulkanik: 82, mendung_aluvial: 92, mendung_gambut: 75, mendung_laterit: 70
+                    }}
+                };
+                this.init();
+            }
+
+            init() {
+                this.populateSelects();
+                this.setupEventListeners();
+            }
+
+            populateSelects() {
+                const plantSelect = document.getElementById('plant');
+                const weatherSelect = document.getElementById('weather');
+                const soilSelect = document.getElementById('soil');
+
+                Object.keys(this.plantsData).forEach(key => {
+                    const option = document.createElement('option');
+                    option.value = key;
+                    option.textContent = this.plantsData[key].name;
+                    plantSelect.appendChild(option);
+                });
+
+                const weathers = [
+                    {value: 'cerah', label: '☀️ Cerah'},
+                    {value: 'hujan', label: '🌧️ Hujan'},
+                    {value: 'mendung', label: '☁️ Mendung'}
+                ];
+                weathers.forEach(w => {
+                    const option = document.createElement('option');
+                    option.value = w.value;
+                    option.textContent = w.label;
+                    weatherSelect.appendChild(option);
+                });
+
+                const soils = [
+                    {value: 'vulkanik', label: '🗻 Vulkanik'},
+                    {value: 'aluvial', label: '🏞️ Aluvial'},
+                    {value: 'gambut', label: '🌾 Gambut'},
+                    {value: 'laterit', label: '🟤 Laterit'}
+                ];
+                soils.forEach(s => {
+                    const option = document.createElement('option');
+                    option.value = s.value;
+                    option.textContent = s.label;
+                    soilSelect.appendChild(option);
+                });
+            }
+
+            setupEventListeners() {
+                document.getElementById('plantForm').addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.predictSuccess();
+                });
+
+                // Close popup on overlay click
+                document.getElementById('resultPopup').addEventListener('click', (e) => {
+                    if (e.target.classList.contains('popup-overlay')) {
+                        closePopup();
+                    }
+                });
+            }
+
+            predictSuccess() {
+                const plant = document.getElementById('plant').value;
+                const weather = document.getElementById('weather').value;
+                const soil = document.getElementById('soil').value;
+
+                if (!plant || !weather || !soil) {
+                    alert('❌ Lengkapi semua pilihan!');
+                    return;
+                }
+
+                const key = `${weather}_${soil}`;
+                const plantData = this.plantsData[plant];
+                let successRate = 50;
+
+                if (plantData.successRates[key]) {
+                    successRate = plantData.successRates[key];
+                }
+
+                this.showPopupResult(plantData, successRate);
+            }
+
+            showPopupResult(plantData, successRate) {
+                // Update popup content
+                document.getElementById('popupTitle').textContent = plantData.name;
+                document.getElementById('popupPercentage').textContent = successRate + '%';
+
+                let desc = '', statusClass = '';
+                if (successRate >= 85) {
+                    desc = '🌟 SANGAT BAGUS! Kondisi IDEAL untuk tanaman ini. Pertumbuhan maksimal.';
+                    statusClass = 'status-sangat-bagus';
+                } else if (successRate >= 70) {
+                    desc = '👍 BAGUS. Pertumbuhan optimal dengan perawatan standar.';
+                    statusClass = 'status-bagus';
+                } else if (successRate >= 55) {
+                    desc = '⚠️ SEDANG. Perlu pupuk khusus & perawatan ekstra.';
+                    statusClass = 'status-sedang';
+                } else {
+                    desc = '❌ BURUK. Tidak direkomendasikan, coba kondisi lain.';
+                    statusClass = 'status-buruk';
+                }
+
+                document.getElementById('popupDesc').textContent = desc;
+                
+                const badge = document.getElementById('popupStatus');
+                badge.textContent = successRate >= 85 ? 'IDEAL' : 
+                                   successRate >= 70 ? 'BAGUS' : 
+                                   successRate >= 55 ? 'SEDANG' : 'BURUK';
+                badge.className = `status-badge ${statusClass}`;
+
+                // Animate progress
+                const progressBar = document.querySelector('.progress-bar');
+                progressBar.style.strokeDashoffset = 100 - successRate;
+
+                // Show popup
+                document.getElementById('resultPopup').style.display = 'flex';
+            }
+        }
+
+        // Global functions
+        function closePopup() {
+            document.getElementById('resultPopup').style.display = 'none';
+        }
+
+        // ESC key to close
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closePopup();
+            }
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            new PlantPredictor();
+        });
+    </script>
+</body>
+</html>
